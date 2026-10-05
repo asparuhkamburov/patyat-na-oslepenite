@@ -1,1 +1,4 @@
-User-agent: *\nDisallow: /\n
+User-agent: *
+Allow: /
+
+Sitemap: https://asparuhkamburov.github.io/patyat-na-oslepenite/sitemap.xml
