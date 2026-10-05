@@ -75,6 +75,17 @@
     .facts{display:flex;flex-direction:column;justify-content:center}
     .facts p{color:#cfc6b9}
     .quote2{font-size:1.04rem;color:#c9bda9;border-left:1px solid #5f4a34;padding-left:18px}
+    .award2012{display:grid;grid-template-columns:1.18fr .82fr;gap:30px;align-items:start}
+    .award2012-copy{display:flex;flex-direction:column;justify-content:center;min-height:100%}
+    .award2012-gallery{display:grid;grid-template-columns:1.1fr .9fr;gap:16px;margin-top:30px}
+    .award2012-gallery figure{margin:0;background:#111;border:1px solid #2c2e32;overflow:hidden}
+    .award2012-gallery img{width:100%;height:100%;min-height:360px;object-fit:cover}
+    .award2012-gallery figure:first-child img{object-position:center center}
+    .award2012-gallery figure:last-child img{object-position:center top}
+    .award2012-gallery figcaption{padding:11px 13px;color:#9d9487;font-size:.78rem;border-top:1px solid #282a2e}
+    .award2012-mark{padding:28px;border:1px solid #4b3d2d;background:linear-gradient(180deg,rgba(198,160,91,.055),rgba(255,255,255,.018))}
+    .award2012-mark strong{display:block;font-size:3.2rem;line-height:1;color:var(--gold);font-weight:500}
+    .award2012-mark span{display:block;margin-top:12px;color:#c7bdaf}
     .authorbox{display:grid;grid-template-columns:1.1fr .9fr;gap:30px}
     .author-profile{display:grid;grid-template-columns:minmax(280px,.82fr) minmax(0,1.18fr);gap:34px;align-items:stretch}
     .author-portrait{margin:0;position:relative;overflow:hidden;min-height:520px;border:1px solid #2d2f33;background:#111}
@@ -97,7 +108,7 @@
     footer .foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
     @media(max-width:820px){
       .navlinks{display:none}.hero{grid-template-columns:1fr;padding-top:48px}.visual img,.visual figcaption{margin-left:auto;margin-right:auto}
-      .sectionhead{grid-template-columns:1fr;gap:8px}.two,.context,.authorbox,.author-profile,.award-block,.downloads{grid-template-columns:1fr}.author-portrait{min-height:440px}.award-photo img{min-height:280px}.numbers{grid-template-columns:1fr}
+      .sectionhead{grid-template-columns:1fr;gap:8px}.two,.context,.award2012,.authorbox,.author-profile,.award-block,.downloads{grid-template-columns:1fr}.award2012-gallery{grid-template-columns:1fr}.award2012-gallery img{min-height:0;height:auto}.author-portrait{min-height:440px}.award-photo img{min-height:280px}.numbers{grid-template-columns:1fr}
     }
   </style>
   <script type="application/ld+json">
@@ -123,6 +134,7 @@
     <a class="brand" href="#top">Пътят на ослепените</a>
     <nav class="navlinks" aria-label="Основна навигация">
       <a href="#roman">За романа</a>
+      <a href="#award2012">Наградата</a>
       <a href="#context">Защо сега</a>
       <a href="#author">Авторът</a>
       <a href="#edition">Изданието</a>
@@ -184,10 +196,42 @@
     </div>
   </section>
 
+  <section id="award2012">
+    <div class="shell">
+      <div class="sectionhead">
+        <div class="sectionno">02 · Наградата</div>
+        <div><h2>Романът и признанието от 2012 г.</h2><div class="rule"></div></div>
+      </div>
+
+      <div class="award2012">
+        <div class="card award2012-copy">
+          <h3>„Пътят на ослепените“ — отличен през 2012 г.</h3>
+          <p>Още с първото си издание романът получава литературно признание от Съюза на българските писатели. Отличието поставя „Пътят на ослепените“ сред наградените български романи на 2012 г. и остава важна част от историята на книгата.</p>
+          <p>Четиринадесет години по-късно второто, електронно издание връща романа към читателите в нов формат и с нова визуална идентичност.</p>
+        </div>
+        <div class="award2012-mark">
+          <strong>2012</strong>
+          <span>Литературна награда за романа „Пътят на ослепените“</span>
+        </div>
+      </div>
+
+      <div class="award2012-gallery">
+        <figure>
+          <img src="award-2012.jpg" alt="Красен Камбуров с наградата за романа „Пътят на ослепените“ през 2012 г.">
+          <figcaption>Красен Камбуров с отличието за „Пътят на ослепените“ · 2012</figcaption>
+        </figure>
+        <figure>
+          <img src="award-2012-family.jpg" alt="Красен Камбуров с дъщеря си Калина на награждаването през 2012 г.">
+          <figcaption>Красен Камбуров с дъщеря си Калина на церемонията по награждаването · 2012</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
   <section id="context">
     <div class="shell">
       <div class="sectionhead">
-        <div class="sectionno">02 · Контекст</div>
+        <div class="sectionno">03 · Контекст</div>
         <div><h2>1012 години след Беласица</h2><div class="rule"></div></div>
       </div>
       <div class="context">
@@ -209,7 +253,7 @@
   <section id="author">
     <div class="shell">
       <div class="sectionhead">
-        <div class="sectionno">03 · Авторът</div>
+        <div class="sectionno">04 · Авторът</div>
         <div><h2>Красен Камбуров</h2><div class="rule"></div></div>
       </div>
 
@@ -253,7 +297,7 @@
   <section id="edition">
     <div class="shell">
       <div class="sectionhead">
-        <div class="sectionno">04 · Издание 2026</div>
+        <div class="sectionno">05 · Издание 2026</div>
         <div><h2>Свободно електронно четене</h2><div class="rule"></div></div>
       </div>
       <div class="two">
