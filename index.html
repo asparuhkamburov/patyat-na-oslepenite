@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="robots" content="noindex,nofollow">
+  <meta name="robots" content="index,follow,max-image-preview:large">
   <link rel="canonical" href="https://asparuhkamburov.github.io/patyat-na-oslepenite/">
   <meta name="theme-color" content="#0b0b0d">
   <title>Пътят на ослепените — Красен Камбуров</title>
@@ -11,7 +11,7 @@
   <meta property="og:type" content="book">
   <meta property="og:locale" content="bg_BG">
   <meta property="og:title" content="Пътят на ослепените — Красен Камбуров">
-  <meta property="og:description" content="Покаяние за Беласица. Второ електронно издание, София, 2026.">
+  <meta property="og:description" content="Покаяние за Беласица. Второ електронно издание, София, 2026. Свободен достъп в PDF и EPUB.">
   <meta property="og:url" content="https://asparuhkamburov.github.io/patyat-na-oslepenite/">
   <meta property="og:image" content="https://asparuhkamburov.github.io/patyat-na-oslepenite/cover-final.jpg">
 
@@ -245,7 +245,8 @@
     .edition-top{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:end}
     .edition-top p{color:#b8b2aa}
     .format-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px}
-    .format{padding:22px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.025)}
+    .format{padding:22px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.025);transition:.2s ease}
+    .format:hover{transform:translateY(-2px);border-color:rgba(201,163,95,.45);background:rgba(201,163,95,.055)}
     .format strong{display:block;font-family:Georgia,serif;color:#e7d5b2;font-size:1.45rem;font-weight:500}
     .format span{display:block;color:#969188;font-size:.82rem;margin-top:6px}
     .pending{display:inline-block;margin-top:18px;font-size:.77rem;color:#d6aaa4}
@@ -292,7 +293,23 @@
     "bookEdition":"Второ издание",
     "datePublished":"2026",
     "publisher":{"@type":"Person","name":"Красен Камбуров"},
-    "url":"https://asparuhkamburov.github.io/patyat-na-oslepenite/"
+    "url":"https://asparuhkamburov.github.io/patyat-na-oslepenite/",
+    "workExample":[
+      {
+        "@type":"Book",
+        "bookFormat":"EBook",
+        "encodingFormat":"application/pdf",
+        "isbn":"978-619-94259-0-9",
+        "url":"https://asparuhkamburov.github.io/patyat-na-oslepenite/patyat-na-oslepenite.pdf"
+      },
+      {
+        "@type":"Book",
+        "bookFormat":"EBook",
+        "encodingFormat":"application/epub+zip",
+        "isbn":"978-619-94259-1-6",
+        "url":"https://asparuhkamburov.github.io/patyat-na-oslepenite/patyat-na-oslepenite.epub"
+      }
+    ]
   }
   </script>
 </head>
@@ -326,8 +343,9 @@
         <span class="badge status">ISBN · присъдени</span>
       </div>
       <div class="hero-actions">
-        <a class="btn" href="#book">За романа</a>
-        <a class="btn alt" href="#edition">Издание 2026</a>
+        <a class="btn" href="patyat-na-oslepenite.pdf" download>Изтегли PDF</a>
+        <a class="btn alt" href="patyat-na-oslepenite.epub" download>Изтегли EPUB</a>
+        <a class="btn alt" href="#book">За романа</a>
       </div>
     </div>
 
@@ -563,7 +581,7 @@
         <div class="section-no">06 · Издание 2026</div>
         <div>
           <h2>Свободно електронно четене</h2>
-          <p class="section-sub">Второто издание е подготвено за PDF и EPUB и ще бъде публикувано окончателно след приключване на ISBN регистрацията.</p>
+          <p class="section-sub">Второто издание е публикувано за свободно електронно четене в два формата — PDF и EPUB.</p>
         </div>
       </div>
 
@@ -579,17 +597,17 @@
         </div>
 
         <div class="format-grid">
-          <div class="format">
-            <strong>PDF</strong>
-            <span>Фиксирано оформление за екран и печат.</span>
-          </div>
-          <div class="format">
-            <strong>EPUB</strong>
-            <span>За електронни четци, таблети и телефони.</span>
-          </div>
+          <a class="format" href="patyat-na-oslepenite.pdf" download style="text-decoration:none">
+            <strong>PDF ↓</strong>
+            <span>ISBN 978-619-94259-0-9 · фиксирано оформление за екран и печат.</span>
+          </a>
+          <a class="format" href="patyat-na-oslepenite.epub" download style="text-decoration:none">
+            <strong>EPUB ↓</strong>
+            <span>ISBN 978-619-94259-1-6 · за електронни четци, таблети и телефони.</span>
+          </a>
         </div>
 
-        <span class="pending">ISBN 978-619-94259-0-9 (PDF) · ISBN 978-619-94259-1-6 (EPUB). Финалните файлове ще бъдат активирани след замяната им на сайта.</span>
+        <span class="pending">Издател: Красен Камбуров · издателски идентификатор 978-619-94259 · София, 2026. Свободно електронно издание за лично, образователно и друго некомерсиално четене.</span>
       </div>
     </div>
   </section>
