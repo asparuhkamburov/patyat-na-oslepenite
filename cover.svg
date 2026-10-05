@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1500" role="img" aria-labelledby="t d">
+<title id="t">Пътят на ослепените</title><desc id="d">Символична тъмна корица с планини и процесия.</desc>
+<defs>
+ <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#090b0f"/><stop offset=".58" stop-color="#15171b"/><stop offset="1" stop-color="#381a13"/></linearGradient>
+ <linearGradient id="sun" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#c86232"/><stop offset="1" stop-color="#d8aa63"/></linearGradient>
+</defs>
+<rect width="1000" height="1500" fill="url(#sky)"/>
+<circle cx="810" cy="760" r="78" fill="url(#sun)" opacity=".9"/>
+<path d="M0 790 L130 680 L220 755 L355 590 L465 720 L610 610 L760 735 L1000 610 L1000 1100 L0 1100Z" fill="#202126"/>
+<path d="M0 940 L180 790 L330 930 L500 760 L680 920 L830 810 L1000 920 L1000 1230 L0 1230Z" fill="#121418"/>
+<path d="M0 1080 C230 1020 360 1100 520 1060 C690 1018 820 1110 1000 1045 L1000 1500 L0 1500Z" fill="#0b0c0e"/>
+<path d="M150 1410 C300 1260 430 1240 560 1170 C690 1100 780 1000 900 900" fill="none" stroke="#8a6e4b" stroke-width="10" opacity=".55"/>
+<g fill="#101113" stroke="#8d744e" stroke-width="3">
+ <g transform="translate(210 1080) scale(1.45)"><circle cx="0" cy="-95" r="34"/><path d="M-40-55 L45-55 L65 115 L-68 115Z"/><path d="M-8-135 L12-135 L20-45 L-20-45Z" transform="rotate(72)"/></g>
+ <g transform="translate(395 1110) scale(1.05)"><circle cx="0" cy="-95" r="34"/><path d="M-40-55 L45-55 L65 115 L-68 115Z"/></g>
+ <g transform="translate(520 1090) scale(.82)"><circle cx="0" cy="-95" r="34"/><path d="M-40-55 L45-55 L65 115 L-68 115Z"/></g>
+ <g transform="translate(625 1060) scale(.62)"><circle cx="0" cy="-95" r="34"/><path d="M-40-55 L45-55 L65 115 L-68 115Z"/></g>
+ <g transform="translate(715 1015) scale(.46)"><circle cx="0" cy="-95" r="34"/><path d="M-40-55 L45-55 L65 115 L-68 115Z"/></g>
+ <g transform="translate(785 970) scale(.34)"><circle cx="0" cy="-95" r="34"/><path d="M-40-55 L45-55 L65 115 L-68 115Z"/></g>
+</g>
+<g font-family="Georgia,serif" text-anchor="middle">
+ <text x="500" y="105" fill="#e6d8bd" font-size="54" letter-spacing="8">КРАСЕН КАМБУРОВ</text>
+ <line x1="250" y1="145" x2="750" y2="145" stroke="#b58b4a" stroke-width="2"/>
+ <text x="500" y="280" fill="#d1aa67" font-size="112" font-weight="700">ПЪТЯТ НА</text>
+ <text x="500" y="405" fill="#d1aa67" font-size="124" font-weight="700">ОСЛЕПЕНИТЕ</text>
+ <text x="500" y="475" fill="#efe8dc" font-size="42" letter-spacing="4">Покаяние за Беласица</text>
+ <line x1="330" y1="515" x2="670" y2="515" stroke="#762b23" stroke-width="4"/>
+ <text x="500" y="575" fill="#c6a665" font-size="46" letter-spacing="3">ТОМА ЕЗЕРНИ</text>
+</g>
+</svg>
