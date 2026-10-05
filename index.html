@@ -4,76 +4,255 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
+  <link rel="canonical" href="https://asparuhkamburov.github.io/patyat-na-oslepenite/">
+  <meta name="theme-color" content="#0c0d0f">
   <title>Пътят на ослепените — Красен Камбуров</title>
-  <meta name="description" content="Официална страница на второто издание на романа „Пътят на ослепените. Покаяние за Беласица“ от Красен Камбуров.">
+  <meta name="description" content="Официална страница на второто електронно издание на романа „Пътят на ослепените. Покаяние за Беласица“ от Красен Камбуров.">
+  <meta property="og:type" content="book">
+  <meta property="og:locale" content="bg_BG">
+  <meta property="og:title" content="Пътят на ослепените — Красен Камбуров">
+  <meta property="og:description" content="Покаяние за Беласица. Второ издание, София, 2026. Свободен електронен достъп след финализиране на ISBN регистрацията.">
+  <meta property="og:url" content="https://asparuhkamburov.github.io/patyat-na-oslepenite/">
   <style>
-    :root{--bg:#0d0e10;--panel:#17191d;--ink:#f1eadf;--muted:#b8b0a3;--gold:#c7a15a;--red:#7f2a22;--line:#3b3329}
+    :root{
+      --bg:#0b0c0e;--bg2:#111318;--panel:#16181c;--panel2:#1b1d22;
+      --ink:#f2ebdf;--muted:#b9b0a3;--gold:#c6a05b;--gold2:#8b7149;
+      --red:#7e2a23;--line:#302a23;--soft:#d8cdbd;--max:1120px
+    }
     *{box-sizing:border-box}
-    body{margin:0;background:linear-gradient(180deg,#090a0c,#111318 55%,#0b0c0e);color:var(--ink);font-family:Georgia,"Times New Roman",serif;line-height:1.6}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:
+      radial-gradient(circle at 80% 18%,rgba(126,42,35,.16),transparent 30rem),
+      linear-gradient(180deg,#090a0c 0,#111318 48%,#0b0c0e 100%);
+      color:var(--ink);font-family:Georgia,"Times New Roman",serif;line-height:1.65}
     a{color:inherit}
-    .wrap{max-width:1080px;margin:auto;padding:40px 22px 70px}
-    .hero{display:grid;grid-template-columns:minmax(240px,360px) 1fr;gap:48px;align-items:center;min-height:78vh}
-    .cover{width:100%;box-shadow:0 22px 70px rgba(0,0,0,.55);border:1px solid #2c2b29}
-    .kicker{letter-spacing:.13em;text-transform:uppercase;color:var(--gold);font-size:.8rem}
-    h1{font-size:clamp(2.5rem,7vw,5.5rem);line-height:.95;margin:.2em 0 .18em;font-weight:600}
-    h2{font-size:clamp(1.35rem,3vw,2rem);font-weight:400;color:#d9d1c5;margin:.3em 0 1.3em}
-    .author{font-size:1.25rem;letter-spacing:.05em}
-    .badge{display:inline-block;border:1px solid var(--gold);color:var(--gold);padding:7px 12px;margin:14px 8px 0 0;font-size:.86rem}
-    .intro{font-size:1.1rem;color:#ddd5c9;max-width:720px}
-    .quote{margin:56px 0;padding:30px 34px;border-left:3px solid var(--red);background:rgba(255,255,255,.025);font-size:1.35rem;font-style:italic}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin:36px 0}
-    .card{background:var(--panel);border:1px solid #24272c;padding:26px}
-    .card h3{margin-top:0;color:var(--gold);font-size:1.2rem}
-    .downloads{display:flex;gap:14px;flex-wrap:wrap;margin-top:24px}
-    .btn{display:inline-block;padding:13px 18px;border:1px solid #70604a;text-decoration:none;background:#1b1c20}
+    img{max-width:100%;display:block}
+    .skip{position:absolute;left:-9999px}
+    .skip:focus{left:16px;top:16px;z-index:99;background:#fff;color:#111;padding:8px 12px}
+    .shell{max-width:var(--max);margin:auto;padding:0 24px}
+    .topbar{position:sticky;top:0;z-index:20;background:rgba(10,11,13,.88);backdrop-filter:blur(12px);border-bottom:1px solid rgba(198,160,91,.14)}
+    .nav{height:66px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{text-decoration:none;font-size:.94rem;letter-spacing:.08em;text-transform:uppercase;color:#e9dfcf}
+    .navlinks{display:flex;gap:22px;flex-wrap:wrap}
+    .navlinks a{text-decoration:none;color:#c3baad;font-size:.88rem}
+    .navlinks a:hover{color:var(--gold)}
+    .hero{min-height:78vh;display:grid;grid-template-columns:1.18fr .82fr;gap:54px;align-items:center;padding:76px 0 64px}
+    .eyebrow{font-size:.76rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-weight:700}
+    h1{font-size:clamp(3.2rem,7.6vw,6.5rem);line-height:.9;margin:.14em 0 .14em;letter-spacing:-.035em;font-weight:600}
+    .subtitle{font-size:clamp(1.25rem,2.6vw,2rem);color:#ded4c4;margin:0 0 24px;font-weight:400}
+    .lead{font-size:1.12rem;color:#d6cec1;max-width:690px}
+    .chips{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0}
+    .chip{border:1px solid #5a4b36;padding:7px 11px;font-size:.78rem;letter-spacing:.04em;color:#d9c6a3;background:rgba(198,160,91,.04)}
+    .status{border-color:#5f2d27;color:#d9aaa3}
+    .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+    .btn{display:inline-block;text-decoration:none;padding:12px 16px;border:1px solid #6d5c43;background:#1b1c20}
+    .btn.secondary{background:transparent;color:#cfc5b7}
     .btn.disabled{opacity:.48;cursor:not-allowed}
-    .note{color:var(--muted);font-size:.92rem}
-    footer{margin-top:60px;padding-top:26px;border-top:1px solid var(--line);color:#91897e;font-size:.9rem}
-    @media(max-width:760px){.hero{grid-template-columns:1fr;gap:30px}.cover{max-width:360px;margin:auto}.grid{grid-template-columns:1fr}.wrap{padding-top:24px}}
+    .visual{position:relative}
+    .visual img{width:min(100%,410px);margin-left:auto;box-shadow:0 26px 80px rgba(0,0,0,.56);border:1px solid #2b2c2f}
+    .visual figcaption{max-width:410px;margin:11px 0 0 auto;color:#8f887d;font-size:.78rem;text-align:center}
+    section{padding:72px 0}
+    .sectionhead{display:grid;grid-template-columns:170px 1fr;gap:28px;align-items:start;margin-bottom:32px}
+    .sectionno{color:var(--gold);font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;padding-top:7px}
+    h2{font-size:clamp(2rem,4vw,3.35rem);line-height:1.06;margin:0;font-weight:500}
+    .rule{height:1px;background:linear-gradient(90deg,var(--gold2),transparent);margin:8px 0 0}
+    .two{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+    .card{background:linear-gradient(180deg,var(--panel),#121419);border:1px solid #24272c;padding:28px}
+    .card h3{margin:.1em 0 .65em;color:var(--gold);font-size:1.16rem}
+    .card p:last-child{margin-bottom:0}
+    .muted{color:var(--muted)}
+    .numbers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:34px 0}
+    .number{padding:24px;border-top:1px solid #4b3d2d;background:rgba(255,255,255,.018)}
+    .number strong{display:block;font-size:2.6rem;line-height:1;color:var(--gold);font-weight:500}
+    .number span{display:block;color:#a89f92;margin-top:10px;font-size:.9rem}
+    blockquote{margin:46px 0;padding:30px 34px 30px 38px;border-left:3px solid var(--red);background:rgba(255,255,255,.025);font-size:clamp(1.2rem,2.6vw,1.65rem);font-style:italic;color:#e4dbcd}
+    blockquote cite{display:block;margin-top:14px;font-size:.82rem;font-style:normal;color:#968d80}
+    .context{display:grid;grid-template-columns:.9fr 1.1fr;gap:32px;align-items:stretch}
+    .motif{min-height:420px;background:url("cover.svg") center 56%/cover no-repeat;border:1px solid #282a2d;position:relative;overflow:hidden}
+    .motif:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.58))}
+    .motif-label{position:absolute;z-index:2;left:20px;bottom:18px;color:#c8bda9;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
+    .facts{display:flex;flex-direction:column;justify-content:center}
+    .facts p{color:#cfc6b9}
+    .quote2{font-size:1.04rem;color:#c9bda9;border-left:1px solid #5f4a34;padding-left:18px}
+    .authorbox{display:grid;grid-template-columns:1.1fr .9fr;gap:30px}
+    .works{border-top:1px solid #302a23;padding-top:18px;color:#afa598}
+    .downloads{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:28px}
+    .download{padding:24px;border:1px solid #3a332a;background:#15171b}
+    .download strong{display:block;font-size:1.4rem;color:#e6d8c2}
+    .download span{display:block;color:#988f83;margin-top:7px}
+    .source-links{display:flex;flex-wrap:wrap;gap:12px}
+    .source-links a{font-size:.88rem;color:#cbb891;text-underline-offset:3px}
+    footer{padding:34px 0 54px;border-top:1px solid var(--line);color:#8f877b;font-size:.86rem}
+    footer .foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+    @media(max-width:820px){
+      .navlinks{display:none}.hero{grid-template-columns:1fr;padding-top:48px}.visual img,.visual figcaption{margin-left:auto;margin-right:auto}
+      .sectionhead{grid-template-columns:1fr;gap:8px}.two,.context,.authorbox,.downloads{grid-template-columns:1fr}.numbers{grid-template-columns:1fr}
+    }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Book",
+    "name":"Пътят на ослепените",
+    "alternateName":"Покаяние за Беласица",
+    "author":{"@type":"Person","name":"Красен Камбуров"},
+    "inLanguage":"bg",
+    "bookEdition":"Второ издание",
+    "datePublished":"2026",
+    "publisher":{"@type":"Person","name":"Красен Камбуров"},
+    "url":"https://asparuhkamburov.github.io/patyat-na-oslepenite/"
+  }
+  </script>
 </head>
 <body>
-<main class="wrap">
-  <section class="hero">
-    <img class="cover" src="cover.svg" alt="Пътят на ослепените — Красен Камбуров">
+<a class="skip" href="#main">Към съдържанието</a>
+
+<header class="topbar">
+  <div class="shell nav">
+    <a class="brand" href="#top">Пътят на ослепените</a>
+    <nav class="navlinks" aria-label="Основна навигация">
+      <a href="#roman">За романа</a>
+      <a href="#context">Защо сега</a>
+      <a href="#author">Авторът</a>
+      <a href="#edition">Изданието</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div id="top" class="shell hero">
     <div>
-      <div class="kicker">Красен Камбуров · Второ издание · 2026</div>
-      <h1>Пътят на ослепените</h1>
-      <h2>Покаяние за Беласица</h2>
-      <p class="author">Красен Камбуров · Тома Езерни</p>
-      <p class="intro">Роман за паметта след Беласица, за пътя на ослепените български воини и за онова, което историята оставя в съзнанието на поколенията. Новото електронно издание се подготвя за свободно некомерсиално четене.</p>
-      <span class="badge">Роман на годината — СБП, 2012</span>
-      <span class="badge">ISBN — в процес на присъждане</span>
-      <div class="downloads">
-        <a class="btn" href="patyat-na-oslepenite.pdf" download>Изтегли PDF</a>
-        <a class="btn" href="patyat-na-oslepenite.epub" download>Изтегли EPUB</a>
+      <div class="eyebrow">Красен Камбуров · София · 2026</div>
+      <h1>Пътят на<br>ослепените</h1>
+      <p class="subtitle">Покаяние за Беласица</p>
+      <p class="lead">Роман за паметта след Беласица, за пътя на ослепените български воини и за начина, по който една историческа травма продължава да разговаря със съвремието.</p>
+      <div class="chips">
+        <span class="chip">Голяма награда на СБП · роман на годината · 2012</span>
+        <span class="chip status">ISBN · процедурата е в ход</span>
       </div>
-      <p class="note">Предпубликационните PDF и EPUB файлове са достъпни тук за целите на ISBN регистрацията. След присъждането на номерата те ще бъдат заменени с окончателните файлове на същите адреси.</p>
+      <div class="cta">
+        <a class="btn" href="#roman">За книгата</a>
+        <a class="btn secondary" href="#edition">За електронното издание</a>
+      </div>
+    </div>
+    <figure class="visual">
+      <img src="cover.svg" alt="Визуален мотив към „Пътят на ослепените“">
+      <figcaption>Визуален мотив към електронното издание. Окончателната корица ще бъде добавена след финализиране на изданието.</figcaption>
+    </figure>
+  </div>
+
+  <section id="roman">
+    <div class="shell">
+      <div class="sectionhead">
+        <div class="sectionno">01 · Романът</div>
+        <div><h2>Между XI и XXI век</h2><div class="rule"></div></div>
+      </div>
+      <div class="two">
+        <div class="card">
+          <h3>Тридесет митични свитъка</h3>
+          <p>Първата част е изградена като тридесет митични свитъка на Тома Езерни от XI век. Стиховият разказ следва ослепените и превръща тяхното скиталчество в литературна памет за Беласица.</p>
+        </div>
+        <div class="card">
+          <h3>Седем приписки</h3>
+          <p>Втората част съдържа седем приписки от XXI век. Красен Камбуров коментира свитъците, прескача между вековете и разгръща историческото събитие като въпрос за българската памет и съдба.</p>
+        </div>
+      </div>
+      <div class="numbers" aria-label="Структура на книгата">
+        <div class="number"><strong>30</strong><span>митични свитъка</span></div>
+        <div class="number"><strong>7</strong><span>приписки от XXI век</span></div>
+        <div class="number"><strong>2012</strong><span>първо издание и награда</span></div>
+      </div>
+      <blockquote>
+        „Но спомни си нявга народе<br>спомни си за нас<br>и за жребия дето ни сепна<br>Амин.“
+        <cite>Из „Пътят на ослепените“</cite>
+      </blockquote>
+      <div class="card">
+        <h3>Критически глас</h3>
+        <p class="quote2">Никола Инджов определя романа като наситен със „смели сюжетни находки“ и с впечатляващи битови и моралистични детайли на епохата.</p>
+      </div>
     </div>
   </section>
 
-  <blockquote class="quote">„Но спомни си нявга народе<br>спомни си за нас<br>и за жребия дето ни сепна<br>Амин.“</blockquote>
+  <section id="context">
+    <div class="shell">
+      <div class="sectionhead">
+        <div class="sectionno">02 · Контекст</div>
+        <div><h2>1012 години след Беласица</h2><div class="rule"></div></div>
+      </div>
+      <div class="context">
+        <div class="motif" aria-label="Визуален мотив с планински пейзаж и процесия">
+          <div class="motif-label">Визуален мотив · 2026</div>
+        </div>
+        <div class="facts">
+          <p>На 3 октомври 2026 г. тленните останки на цар Самуил бяха посрещнати в София и положени в базиликата „Света София“. Завръщането им отново постави в общественото внимание Самуиловата епоха и паметта за Беласица.</p>
+          <p>Това събитие стана повод <strong>„Пътят на ослепените“</strong> да тръгне отново към читателите — този път като свободно електронно издание, без ограничението на малкия печатен тираж.</p>
+          <p class="muted">Окончателните PDF и EPUB файлове ще бъдат публикувани след получаване на ISBN номерата.</p>
+          <div class="source-links">
+            <a href="https://www.bta.bg/bg/news/lik/1217129-balgariya-posreshtna-tlennite-ostanki-na-tsar-samuil-koito-byaha-polozheni-v-st" target="_blank" rel="noopener">БТА · 3 октомври 2026</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <section class="grid">
-    <article class="card">
-      <h3>За книгата</h3>
-      <p>„Пътят на ослепените. Покаяние за Беласица“ съчетава тридесет митични свитъка на Тома Езерни и седем приписки на Красен Камбуров. Художественият текст преминава между XI и XXI век и превръща историческата памет в нравствен и литературен въпрос.</p>
-    </article>
-    <article class="card">
-      <h3>Новото издание</h3>
-      <p><strong>Второ издание. Електронно издание, София, 2026.</strong></p>
-      <p>Изданието използва нова корица и ново оформление. Текстът е възпроизведен по авторския файл без осъвременяване на езика и следва запазените авторови указания за набора.</p>
-    </article>
-    <article class="card">
-      <h3>Наградата</h3>
-      <p>Романът е носител на Голямата награда на Съюза на българските писатели за роман на годината за 2012 г.</p>
-    </article>
-    <article class="card">
-      <h3>Свободен достъп</h3>
-      <p>Книгата е достъпна тук в два предпубликационни формата за целите на ISBN регистрацията — PDF с фиксирано оформление и EPUB за телефони, таблети и електронни четци. След присъждането на ISBN файловете ще бъдат финализирани без промяна на техните адреси.</p>
-    </article>
+  <section id="author">
+    <div class="shell">
+      <div class="sectionhead">
+        <div class="sectionno">03 · Авторът</div>
+        <div><h2>Красен Камбуров</h2><div class="rule"></div></div>
+      </div>
+      <div class="authorbox">
+        <div class="card">
+          <p>Красен Камбуров е поет, есеист, драматург и белетрист. „Пътят на ослепените“ е сред произведенията, в които историческа тема, мит, документ и съвременен коментар се преплитат в единна литературна конструкция.</p>
+          <p>През 2012 г. романът получава Голямата награда на Съюза на българските писатели за роман на годината.</p>
+        </div>
+        <div class="card">
+          <h3>Избрани книги</h3>
+          <p class="works">„Водопадът“ · „Пътят на ослепените“ · „Осияние днес“ · „Заветът на Медея“ · „Камъкът от Ватерло“</p>
+          <div class="source-links">
+            <a href="https://sbp.bg/%D0%B8%D0%B7-%D0%BB%D0%B8%D1%82%D0%B5%D1%80%D0%B0%D1%82%D1%83%D1%80%D0%BD%D0%B8%D1%82%D0%B5-%D0%BF%D0%BE%D0%BB%D0%B5%D1%82%D0%B0-%D0%BD%D0%B0-2017-%D0%B3/" target="_blank" rel="noopener">Съюз на българските писатели</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="edition">
+    <div class="shell">
+      <div class="sectionhead">
+        <div class="sectionno">04 · Издание 2026</div>
+        <div><h2>Свободно електронно четене</h2><div class="rule"></div></div>
+      </div>
+      <div class="two">
+        <div class="card">
+          <h3>Второ издание</h3>
+          <p>Настоящото издание е самостоятелно електронно издание, подготвено през 2026 г. Текстът е възпроизведен по авторския файл, без осъвременяване на езика и при запазване на авторовата композиционна логика.</p>
+        </div>
+        <div class="card">
+          <h3>Нов облик</h3>
+          <p>Изданието използва ново оформление и нова визуална идентичност. Временната графика на тази страница ще остане като отделен визуален мотив и след добавянето на окончателната корица.</p>
+        </div>
+      </div>
+      <div class="downloads">
+        <div class="download">
+          <strong>PDF</strong>
+          <span>Фиксирано оформление · окончателният файл се финализира след ISBN.</span>
+        </div>
+        <div class="download">
+          <strong>EPUB</strong>
+          <span>За електронни четци, таблети и телефони · окончателният файл се финализира след ISBN.</span>
+        </div>
+      </div>
+      <p class="muted" style="margin-top:22px">ISBN регистрацията е подадена. До приключването ѝ страницата остава извън индексирането от търсачки.</p>
+    </div>
   </section>
 </main>
-<footer class="wrap">© Красен Камбуров · 2026 · Всички права върху текста са запазени. Безплатният достъп не представлява отказ от авторски права.</footer>
+
+<footer>
+  <div class="shell foot">
+    <div>© Красен Камбуров · 2026 · Всички права върху текста са запазени.</div>
+    <div>Официална страница на „Пътят на ослепените“</div>
+  </div>
+</footer>
 </body>
 </html>
