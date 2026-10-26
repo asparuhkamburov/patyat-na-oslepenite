@@ -1,6 +1,8 @@
 # Красен Камбуров — авторски сайт
 
-Публичен сайт: https://asparuhkamburov.github.io/patyat-na-oslepenite/
+Целеви адрес след преместването: https://krasenkamburov.github.io/
+
+Този клон подготвя преместването. Новият адрес се активира след създаване на хранилището `krasenkamburov/krasenkamburov.github.io` и настройване на GitHub Pages. Дотогава действащият сайт е https://asparuhkamburov.github.io/patyat-na-oslepenite/.
 
 Статичен сайт за GitHub Pages. Начална страница, каталог с филтри и търсене, биография и отделни страници за 15 заглавия от подбраната библиография.
 

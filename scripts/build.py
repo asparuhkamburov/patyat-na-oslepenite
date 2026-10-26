@@ -1,7 +1,7 @@
 from pathlib import Path
 import html,json,re
 ROOT=Path(__file__).resolve().parents[1]
-BASE='https://asparuhkamburov.github.io/patyat-na-oslepenite/'
+BASE='https://krasenkamburov.github.io/'
 E=html.escape
 # Bibliography retained from the original author section. Unknown dates remain unset.
 BOOKS=[
