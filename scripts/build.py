@@ -1,80 +1,26 @@
 from pathlib import Path
-import html,json,re
-ROOT=Path(__file__).resolve().parents[1]
-BASE='https://asparuhkamburov.github.io/patyat-na-oslepenite/'
-E=html.escape
-# Bibliography retained from the original author section. Unknown dates remain unset.
-BOOKS=[
- ('vodopadat','Водопадът','',2011,'novels','Роман'),
- ('patyat-na-oslepenite','Пътят на ослепените','Покаяние за Беласица',2012,'novels','Роман'),
- ('osiyanie-dnes','Осияние днес','Роман за взривяването на мавзолея',2014,'novels','Роман'),
- ('zavetat-na-medeya','Заветът на Медея','',2017,'novels','Роман'),
- ('kamakat-ot-vaterlo','Камъкът от Ватерло','',2021,'novels','Роман'),
- ('zhivotat-na-geroya','Животът на героя','',1995,'poetry','Поезия'),
- ('dati','Дати','Девет поеми за Милена',1996,'poetry','Поеми'),
- ('poltargayst','Полтъргайст','Книги-шрапнели',None,'poetry','Поезия'),
- ('velikden','Великден','Обреден епос за неопознати летящи обекти',2000,'poetry','Поема'),
- ('saborna-kniga','Съборна книга','',2016,'poetry','Поезия'),
- ('satirikonite-na-abarbareya','Сатириконите на Абарбарея','',2015,'essays','Есеистика'),
- ('izkusheniya-v-zdracha','Изкушения в здрача','Редове за художници',2018,'essays','Художествена критика'),
- ('vrazka-goticheski-klyuchove','Връзка готически ключове','',None,'essays','Есеистика'),
- ('sedem-piesi','Седем пиеси','',2014,'drama','Драматургия'),
- ('chetvartiyat-eshelon','Четвъртият ешелон','Руска проза',1984,'translations','Превод')]
-GENRES=[('all','Всички'),('novels','Романи'),('poetry','Поезия'),('essays','Есеистика'),('drama','Драматургия'),('translations','Преводи')]
-WIKI='https://bg.wikipedia.org/wiki/Красен_Камбуров'
+import html
+import json
 
-def header(prefix=''):
- return f'''<a class="skip" href="#main">Към съдържанието</a><header class="site-header"><div class="wrap nav"><a class="brand" href="{prefix or './'}">Красен Камбуров<span>Литературен свят · книги и автор</span></a><button class="menu" type="button" aria-controls="navigation" aria-expanded="false">Меню</button><nav class="navlinks" id="navigation" aria-label="Основна навигация"><a href="{prefix}#works">Книги</a><a href="{prefix}#author">За автора</a><a href="{prefix}#edition">Електронни издания</a></nav></div></header>'''
-def footer(prefix=''):
- return f'''<footer class="footer"><div class="wrap"><span>© Красен Камбуров · 2026 · Всички права върху текстовете са запазени.</span><a href="{prefix}#works">Всички книги ↑</a></div></footer>'''
-def page(title,description,body,path='',image='krasen-kamburov.jpg',schema=None):
- prefix='../../' if path else ''
- return f'''<!doctype html><html lang="bg"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{E(title)}</title><meta name="description" content="{E(description)}"><meta name="theme-color" content="#101210"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="{BASE+path}"><meta property="og:type" content="{'book' if path else 'website'}"><meta property="og:locale" content="bg_BG"><meta property="og:title" content="{E(title)}"><meta property="og:description" content="{E(description)}"><meta property="og:url" content="{BASE+path}"><meta property="og:image" content="{BASE+image}"><link rel="stylesheet" href="{prefix}assets/site.css"><script src="{prefix}assets/site.js" defer></script><script type="application/ld+json">{json.dumps(schema or {'@context':'https://schema.org','@type':'Person','name':'Красен Камбуров','url':BASE,'image':BASE+'krasen-kamburov.jpg','jobTitle':'Писател'},ensure_ascii=False)}</script></head><body data-page="{'book' if path else 'home'}">{header(prefix)}<main id="main">{body}</main>{footer(prefix)}</body></html>'''
-def actions(prefix=''):
- return f'<div class="actions"><a class="btn" href="{prefix}patyat-na-oslepenite.pdf" download>Изтегли PDF ↓</a><a class="btn alt" href="{prefix}patyat-na-oslepenite.epub" download>Изтегли EPUB ↓</a></div>'
+ROOT = Path(__file__).resolve().parents[1]
+BASE = 'https://krasenkamburov.github.io/'
+SLUGS = ['vodopadat', 'patyat-na-oslepenite', 'osiyanie-dnes', 'zavetat-na-medeya', 'kamakat-ot-vaterlo', 'zhivotat-na-geroya', 'dati', 'poltargayst', 'velikden', 'saborna-kniga', 'satirikonite-na-abarbareya', 'izkusheniya-v-zdracha', 'vrazka-goticheski-klyuchove', 'sedem-piesi', 'chetvartiyat-eshelon']
 
-rows=''
-for slug,title,sub,year,genre,label in BOOKS:
- rows+=f'<a class="book-row" data-genre="{genre}" href="books/{slug}/"><span class="year">{year or "—"}</span><div><h3>{E(title)}</h3><small>{E(sub)+" · " if sub else ""}{label}</small></div><span class="arrow" aria-hidden="true">↗</span></a>'
-filters=''.join(f'<button class="filter" type="button" data-genre="{g}" aria-pressed="{str(g=="all").lower()}">{label}</button>' for g,label in GENRES)
-home=f'''
-<div class="wrap hero" id="top"><div><p class="eyebrow">Поет · белетрист · есеист · драматург</p><h1>Красен<br>Камбуров</h1><p class="intro">Поезия, романи и есета.<br>Книги за паметта, историята<br>и човешката съдба.</p><div class="actions"><a class="btn" href="#works">Разгледайте книгите <span aria-hidden="true">↗</span></a><a class="btn alt" href="#author">За автора</a></div></div><figure class="hero-photo"><img src="krasen-kamburov.jpg" alt="Портрет на писателя Красен Камбуров" fetchpriority="high" width="2048" height="1371"><figcaption>Красен Камбуров · авторски сайт</figcaption></figure></div>
-<section class="section"><div class="wrap"><div class="section-heading"><div><span class="eyebrow">На фокус</span><h2>Към читателя</h2></div><p>Ново електронно присъствие на книгите — с грижа към авторския текст.</p></div><div class="featured"><article class="feature"><a href="books/patyat-na-oslepenite/" tabindex="-1" aria-hidden="true"><img src="cover-final.jpg" alt="" width="1024" height="1536" loading="lazy"></a><div><span class="label">Свободно четене · PDF / EPUB</span><h3>Пътят на ослепените</h3><p>Покаяние за Беласица<br>Роман на годината · СБП · 2012</p><a class="text-link" href="books/patyat-na-oslepenite/">За книгата и изтегляне ↗</a></div></article><article class="feature"><a href="books/osiyanie-dnes/" tabindex="-1" aria-hidden="true"><img src="assets/osiyanie-dnes-cover.jpg" alt="" width="900" height="1344" loading="lazy"></a><div><span class="label">Предстоящо електронно издание</span><h3>Осияние днес</h3><p>Роман за взривяването на мавзолея</p><a class="text-link" href="books/osiyanie-dnes/">Разгледайте книгата ↗</a></div></article></div></div></section>
-<section class="section" id="works"><div class="wrap"><div class="section-heading"><div><span class="eyebrow">Библиография</span><h2>Книгите</h2></div><p>Заглавия от различни години и жанрове. Всяка книга има своя страница.</p></div><div class="catalog-tools"><div class="filters" role="group" aria-label="Филтър по жанр">{filters}</div><label class="search-label" for="book-search">Търсене в каталога<input type="search" id="book-search" placeholder="Заглавие или година…"></label></div><p id="catalog-count" class="catalog-count" role="status" aria-live="polite">15 заглавия</p><div class="book-list">{rows}</div><p id="no-results" class="empty" hidden>Няма намерени заглавия. Опитайте друга дума или изберете „Всички“.</p><p class="note" style="margin-top:28px">Каталогът следва подбраната библиография от досегашния сайт. За заглавията без посочена година е оставено тире.</p></div></section>
-<section class="section" id="author"><div class="wrap bio"><div><p class="eyebrow">За автора</p><h2>Един автор.<br>Много литературни светове.</h2><div class="milestones"><div class="milestone"><span>1949</span><p>Роден в Пловдив. От 1950 г. живее в София.</p></div><div class="milestone"><span>2012</span><p>Награда на СБП за роман за „Пътят на ослепените“.</p></div><div class="milestone"><span>2026</span><p>Почетна грамота за принос към съвременната българска литература.</p></div></div></div><div><p><strong>Красен Генчев Камбуров</strong> е поет, есеист, драматург, белетрист и преводач. Роден е на 21 ноември 1949 г. Завършва българска филология в Софийския университет „Св. Климент Охридски“.</p><p>Работил е в редакцията на списание „Философски алтернативи“ и в отдел „Архиви“ на Националния литературен музей. Член е на Съюза на българските писатели от 2012 г.</p><p>Творчеството му обхваща поезия, поеми, есета, драматургия, романи, художествена критика и преводи.</p><div class="source-links"><a href="{WIKI}">Биографична справка</a><a href="https://literaturensviat.com/?p=54421">Литературен свят</a><a href="https://www.facebook.com/krasen.kamburov">Facebook</a></div><figure class="certificate"><a href="krasen-kamburov-award-2026.jpg"><img src="krasen-kamburov-award-2026.jpg" alt="Красен Камбуров с почетна грамота от Съюза на българските писатели през 2026 г." loading="lazy"></a><figcaption>Почетна грамота от СБП · 2026</figcaption></figure></div></div></section>
-<section class="section" id="edition"><div class="wrap reading"><div><p class="eyebrow">Електронни издания</p><h2>Книгата е<br>близо до вас.</h2><p>„Пътят на ослепените“ е достъпен безплатно за лично, образователно и друго некомерсиално четене. Изберете PDF за фиксирано оформление или EPUB за електронен четец и телефон.</p><p class="note">Всички права върху авторския текст са запазени.</p></div><div><h3>Пътят на ослепените</h3><p>Второ електронно издание · София, 2026</p><a class="download-row" href="patyat-na-oslepenite.pdf" download><div><strong>PDF</strong><small>ISBN 978-619-94259-0-9</small></div><span>Изтегли ↓</span></a><a class="download-row" href="patyat-na-oslepenite.epub" download><div><strong>EPUB</strong><small>ISBN 978-619-94259-1-6</small></div><span>Изтегли ↓</span></a><p class="status">Подготвя се: <a href="books/osiyanie-dnes/">„Осияние днес“</a>.</p></div></div></section>'''
-(ROOT/'index.html').write_text(page('Красен Камбуров — книги и електронни издания','Авторски сайт на Красен Камбуров. Романи, поезия, есета, драматургия и преводи. Свободно електронно издание на „Пътят на ослепените“.',home))
+def redirect(path):
+    target = BASE + path
+    return f'''<!doctype html>
+<html lang="bg"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Красен Камбуров — нов адрес</title><link rel="canonical" href="{html.escape(target)}">
+<script>location.replace({json.dumps(target)} + location.search + location.hash);</script>
+<noscript><meta http-equiv="refresh" content="0;url={html.escape(target)}"></noscript>
+<style>body{{max-width:46rem;margin:12vh auto;padding:1.5rem;font:1.2rem/1.6 Georgia,serif;background:#faf8f0;color:#222}}a{{color:#445330}}</style></head>
+<body><h1>Сайтът на Красен Камбуров е с нов адрес</h1><p><a href="{html.escape(target)}">Продължете към krasenkamburov.github.io</a></p></body></html>'''
 
-for slug,title,sub,year,genre,label in BOOKS:
- path=f'books/{slug}/'; prefix='../../'; is_p=slug=='patyat-na-oslepenite'; is_o=slug=='osiyanie-dnes'
- cover='cover-final.jpg' if is_p else 'assets/osiyanie-dnes-cover.jpg' if is_o else ''
- desc=(f'„{title}“'+(f'. {sub}.' if sub else '.')+f' {label}'+(f' от {year} г.' if year else '.')+' '+('Превод: Красен Камбуров.' if genre=='translations' else 'Автор: Красен Камбуров.'))
- facts=f'<aside class="book-facts" aria-label="Данни за книгата"><dl><div><dt>{"Преводач" if genre=="translations" else "Автор"}</dt><dd>Красен Камбуров</dd></div><div><dt>Жанр</dt><dd>{label}</dd></div>'+(f'<div><dt>Печатно издание</dt><dd>{year}</dd></div>' if year else '')+'</dl></aside>'
- lead=''; content=''; hero_action=''
- if is_p:
-  lead='Роман за паметта след Беласица, за пътя на ослепените български воини и за начина, по който една историческа травма продължава да разговаря със съвремието.'
-  hero_action=actions(prefix)+'<p class="status">Роман на годината · Съюз на българските писатели · 2012</p>'
-  content=f'''<section class="section" id="book"><div class="wrap article"><p class="eyebrow">За романа</p><h2>Между XI и XXI век</h2><h3>Тридесет митични свитъка</h3><p>Първата част е изградена като тридесет митични свитъка на Тома Езерни от XI век. Стиховият разказ следва ослепените и превръща тяхното скиталчество в литературна памет за Беласица.</p><h3>Седем приписки</h3><p>Втората част съдържа седем приписки от XXI век. Красен Камбуров коментира свитъците, прескача между вековете и разгръща историческото събитие като въпрос за паметта, историята и българската съдба.</p><blockquote class="quote">„Но спомни си нявга народе<br>спомни си за нас<br>и за жребия дето ни сепна<br>Амин.“<cite>Из „Пътят на ослепените“</cite></blockquote></div></section><section class="section" id="award"><div class="wrap article"><p class="eyebrow">Отличието</p><h2>Роман на годината · 2012</h2><p>„Пътят на ослепените“ е отличен с годишната литературна награда на Съюза на българските писатели за роман за 2012 г. Наградата е връчена на 23 май 2013 г.</p><div class="book-gallery"><figure><img src="../../award-2012.jpg" loading="lazy" alt="Красен Камбуров с наградата за романа"><figcaption>Церемония по награждаването · 23 май 2013 г.</figcaption></figure><figure><img src="../../award-2012-family.jpg" loading="lazy" alt="Красен Камбуров със семейството си на церемонията"><figcaption>Спомен от литературното отличие</figcaption></figure></div></div></section><section class="section" id="context"><div class="wrap article"><p class="eyebrow">Контекст</p><h2>1012 години след Беласица</h2><p>На 3 октомври 2026 г. тленните останки на цар Самуил бяха посрещнати в София и положени в базиликата „Света София“. Събитието стана повод романът да тръгне отново към читателите — в свободно електронно издание.</p><a class="text-link" href="https://www.bta.bg/bg/news/lik/1217129-balgariya-posreshtna-tlennite-ostanki-na-tsar-samuil-koito-byaha-polozheni-v-st">БТА · 3 октомври 2026</a></div></section><section class="section" id="edition"><div class="wrap reading"><div><p class="eyebrow">София · 2026</p><h2>Второ електронно издание</h2><p>Текстът е възпроизведен по авторския файл при запазване на композиционната логика. Изданието има нова корица и самостоятелно оформление.</p><p class="note">Издател: Красен Камбуров. Свободно електронно издание за лично, образователно и друго некомерсиално четене.</p></div><div><a class="download-row" href="../../patyat-na-oslepenite.pdf" download><div><strong>PDF</strong><small>ISBN 978-619-94259-0-9</small></div><span>Изтегли ↓</span></a><a class="download-row" href="../../patyat-na-oslepenite.epub" download><div><strong>EPUB</strong><small>ISBN 978-619-94259-1-6</small></div><span>Изтегли ↓</span></a></div></div></section>'''
- elif is_o:
-  lead='Роман за свободата, затвора и митовете на българския преход, в който сатирата среща фантастичното.'
-  hero_action='<p class="status">Подготвя се електронно издание в PDF и EPUB.</p><div class="actions"><a class="btn alt" href="#book">За романа ↓</a></div>'
-  content=f'''<section class="section" id="book"><div class="wrap reading"><div class="article"><p class="eyebrow">За романа</p><h2>Осияние днес</h2><p>Публикуван за първи път през 2014 г. от издателство „Летера“, романът е номиниран за „Роман на годината“ за 2014 г. на Националния дарителски фонд „13 века България“.</p><p>Композицията преминава през три части: „Заключението“, „Мисията“ и „Разрушението“.</p><a class="text-link" href="https://azcheta.com/predstoiasti/plovdiv-chete-osiyanie-dnes-ot-krasen-kamburov-nominatsiya-za-roman-na-godinata-za-2014-g/">Представяне на книгата и номинацията · Аз чета ↗</a></div>{facts}</div></section><section class="section" id="edition"><div class="wrap article"><p class="eyebrow">Предстоящо</p><h2>Нов път към читателите</h2><p>Електронното издание се подготвя по авторския текст, с избраната корица и оформление за PDF и EPUB. Когато бъде публикувано, файловете ще бъдат достъпни от тази страница.</p><a class="text-link" href="../../#edition">Към наличните електронни издания ↗</a></div></section>'''
- else:
-  extra=''
-  if slug=='sedem-piesi': extra='<h2>В сборника</h2><ul><li>„Беба“ (1999)</li><li>„Жадувани от птиците“ (1999)</li><li>„Всеки пет лета“ (2000)</li><li>„Глина“ (2010)</li><li>„Календи нула“ (2013)</li><li>„Като куче“ (2013)</li><li>„Спонтанно“ (2013)</li></ul>'
-  elif slug=='vrazka-goticheski-klyuchove': extra='<h2>Есеистичен корпус</h2><p>Есетата са обединени в четири тома под общото заглавие „Връзка готически ключове“.</p><a class="text-link" href="https://iztok-zapad.eu/vrazka-goticheski-klyuchove">За книгата в „Изток-Запад“ ↗</a>'
-  lead='Руска проза в превод на Красен Камбуров.' if genre=='translations' else f'От {dict(GENRES)[genre].lower()}та на Красен Камбуров.' if genre=='drama' else f'{label} от Красен Камбуров.'
-  content=f'<section class="section"><div class="wrap article">{extra}<h3>Електронен достъп</h3><p>За това заглавие на сайта няма публикувано електронно издание.</p><a class="text-link" href="../../#edition">Разгледайте наличните електронни издания ↗</a><div class="source-links"><a href="{WIKI}">Библиографична справка</a></div></div></section>'
- related=[b for b in BOOKS if b[4]==genre and b[0]!=slug][:3]
- if not related: related=[BOOKS[1],BOOKS[2]]
- related_html=''.join(f'<a href="../{b[0]}/"><small>{b[5]}{f" · {b[3]}" if b[3] else ""}</small><h3>{E(b[1])} ↗</h3></a>' for b in related)
- body=f'<div class="wrap breadcrumb"><a href="../../">Начало</a> / <a href="../../#works">Книги</a> / {E(title)}</div><div class="wrap book-hero{ " text-only" if not cover else ""}"><div><p class="eyebrow">{label}{f" · {year}" if year else ""} · Красен Камбуров</p><h1>{E(title)}</h1>{f"<p class=subtitle>{E(sub)}</p>" if sub else ""}<p class="lead">{lead}</p>{hero_action}</div>{f"<img class=cover src=../../{cover} alt=\"Корица на „{E(title)}“\">" if cover else facts}</div>{content}<section class="section"><div class="wrap"><p class="eyebrow">Още от Красен Камбуров</p><div class="related">{related_html}</div><a class="text-link" href="../../#works">Към всички книги ↗</a></div></section>'
- schema={'@context':'https://schema.org','@type':'Book','name':title+(f'. {sub}' if sub else ''),'inLanguage':'bg','url':BASE+path,'genre':label,'translator' if genre=='translations' else 'author':{'@type':'Person','name':'Красен Камбуров','url':BASE+'#author'}}
- if year:schema['datePublished']=str(year)
- if cover:schema['image']=BASE+cover
- if is_p:schema['workExample']=[{'@type':'Book','bookFormat':'https://schema.org/EBook','isbn':isbn,'url':BASE+'patyat-na-oslepenite.'+ext,'datePublished':'2026'} for ext,isbn in [('pdf','978-619-94259-0-9'),('epub','978-619-94259-1-6')]]
- folder=ROOT/path;folder.mkdir(parents=True,exist_ok=True);(folder/'index.html').write_text(page(title+' — Красен Камбуров',desc,body,path,cover or 'krasen-kamburov.jpg',schema))
-urls=[BASE]+[BASE+'books/'+b[0]+'/' for b in BOOKS]
-(ROOT/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+''.join('<url><loc>'+E(url)+'</loc></url>' for url in urls)+'</urlset>\n')
-(ROOT/'robots.txt').write_text('User-agent: *\nAllow: /\nSitemap: '+BASE+'sitemap.xml\n')
-print(f'Built homepage and {len(BOOKS)} book pages')
+if __name__ == '__main__':
+    paths = ['', *['books/' + slug + '/' for slug in SLUGS]]
+    for path in paths:
+        destination = ROOT / path / 'index.html'
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        destination.write_text(redirect(path), encoding='utf-8')
+    (ROOT / 'robots.txt').write_text('User-agent: *\nAllow: /\nSitemap: ' + BASE + 'sitemap.xml\n', encoding='utf-8')
+    (ROOT / 'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>' + BASE + '</loc></url></urlset>\n', encoding='utf-8')
